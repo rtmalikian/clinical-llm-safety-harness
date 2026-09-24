@@ -1,0 +1,10 @@
+services:
+  harness:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      HARNESS_DB: /app/data/harness.db
+    restart: unless-stopped

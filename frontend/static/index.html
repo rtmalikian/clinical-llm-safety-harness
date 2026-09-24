@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clinical LLM Safety Harness — Demo</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>🛡️ Clinical LLM Safety Harness</h1>
+    <p class="sub">Hallucination detection · Citation enforcement · Safeguarding escalation · Human-in-the-loop review</p>
+    <p class="synthetic">Demo build — all clinical content on this page is <strong>synthetic</strong>. Not a medical device.</p>
+    <p class="apikey-row">
+      <label for="api-key">API key</label>
+      <input id="api-key" type="password" placeholder="only if the server requires one" autocomplete="off" />
+    </p>
+  </div>
+</header>
+
+<nav class="wrap tabs">
+  <button class="tab active" data-tab="evaluate">Evaluate</button>
+  <button class="tab" data-tab="queue">Review Queue <span id="queue-count" class="pill">0</span></button>
+  <button class="tab" data-tab="redteam">Red Team</button>
+  <button class="tab" data-tab="audit">Audit</button>
+</nav>
+
+<main class="wrap">
+
+<section id="tab-evaluate" class="panel">
+  <h2>Evaluate a model response</h2>
+  <div class="grid2">
+    <div>
+      <label>Conversation ID <input id="conv-id" value="demo-conv-live"></label>
+      <label>User turn <textarea id="user-text" rows="2" placeholder="What the user said…"></textarea></label>
+      <label>Assistant response to evaluate <textarea id="assistant-text" rows="6" placeholder="Paste the model's response…"></textarea></label>
+    </div>
+    <div>
+      <label>Sources (JSON array of {id, title, text})
+        <textarea id="sources-json" rows="10">[{"id": 1, "title": "Example source (synthetic)", "text": "Ibuprofen for adults: 200 to 400 mg every 6 to 8 hours as needed."}]</textarea>
+      </label>
+      <div class="row">
+        <button id="btn-evaluate" class="primary">Run evaluation</button>
+        <button id="btn-clear">Clear</button>
+      </div>
+    </div>
+  </div>
+
+  <h3>Synthetic demo cases</h3>
+  <div id="demo-cases" class="cards"></div>
+
+  <div id="eval-result"></div>
+</section>
+
+<section id="tab-queue" class="panel hidden">
+  <h2>Human-in-the-loop review queue</h2>
+  <div class="row">
+    <label>Kind
+      <select id="queue-kind">
+        <option value="">all</option>
+        <option value="accuracy">accuracy</option>
+        <option value="safeguarding">safeguarding</option>
+      </select>
+    </label>
+    <label>Status
+      <select id="queue-status">
+        <option value="open">open</option>
+        <option value="decided">decided</option>
+      </select>
+    </label>
+    <button id="btn-refresh-queue">Refresh</button>
+  </div>
+  <div id="queue-list" class="cards"></div>
+</section>
+
+<section id="tab-redteam" class="panel hidden">
+  <h2>Red-team traps</h2>
+  <p class="muted">Adversarial cases for regression-testing the harness on every model or prompt change.</p>
+  <div id="trap-list" class="cards"></div>
+</section>
+
+<section id="tab-audit" class="panel hidden">
+  <h2>Audit ledger</h2>
+  <p class="muted">Append-only, hash-chained record of every evaluation, queue insertion, and reviewer decision.</p>
+  <button id="btn-verify" class="primary">Verify chain integrity</button>
+  <div id="audit-result"></div>
+  <h3>Recent evaluations</h3>
+  <div id="eval-list" class="cards"></div>
+</section>
+
+</main>
+
+<div id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>

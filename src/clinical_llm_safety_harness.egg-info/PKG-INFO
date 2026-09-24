@@ -1,0 +1,19 @@
+Metadata-Version: 2.4
+Name: clinical-llm-safety-harness
+Version: 0.1.0
+Summary: Hallucination detection, citation enforcement, safeguarding escalation, and human-in-the-loop review for clinical LLM outputs
+Author: Raphael T. Malikian
+License: MIT
+Project-URL: Homepage, https://github.com/rtmalikian/clinical-llm-safety-harness
+Project-URL: Issues, https://github.com/rtmalikian/clinical-llm-safety-harness/issues
+Keywords: clinical-ai,llm-safety,hallucination-detection,citation-verification,human-in-the-loop,healthcare-ai,patient-safety,hipaa,eval-harness,medical-ai,rag-evaluation,clinical-nlp
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: fastapi>=0.110
+Requires-Dist: uvicorn[standard]>=0.29
+Requires-Dist: pydantic>=2.6
+Provides-Extra: test
+Requires-Dist: pytest>=8; extra == "test"
+Requires-Dist: httpx>=0.27; extra == "test"
+Dynamic: license-file
