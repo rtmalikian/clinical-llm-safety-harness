@@ -1,5 +1,7 @@
 # 🛡️ Clinical LLM Safety Harness
 
+▶ **Try the live demo:** https://rtmalikian.github.io/clinical-llm-safety-harness/ — static preview with demo data, no backend connected.
+
 ### Hallucination Detection · Citation Enforcement · Safeguarding Escalation · Human-in-the-Loop Review for Healthcare AI
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)
